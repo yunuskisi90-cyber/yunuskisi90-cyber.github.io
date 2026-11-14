@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="NOIR">
+<defs><radialGradient id="g" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#4A0A0A"/><stop offset="1" stop-color="#0A0A0A"/></radialGradient></defs>
+<rect width="120" height="120" rx="26" fill="url(#g)"/>
+<path d="M60 24c-17 0-27 13-27 31v34c0 3 2 5 5 5h8l4-8 5 8 5-8 5 8 5-8 4 8h8c3 0 5-2 5-5V55c0-18-10-31-27-31z" fill="#0A0A0A" stroke="#C0C0C0" stroke-width="2.5"/>
+<path d="M40 22l7 9 7-12 6 13 6-13 7 12 7-9-2 14H42z" fill="#D4AF37" stroke="#8a6d1a" stroke-width="1"/>
+<ellipse cx="50" cy="58" rx="5" ry="3.2" fill="#FF1A1A"/><ellipse cx="70" cy="58" rx="5" ry="3.2" fill="#FF1A1A"/>
+<rect x="3" y="3" width="114" height="114" rx="24" fill="none" stroke="#FF1A1A" stroke-opacity=".55" stroke-width="2"/>
+</svg>
