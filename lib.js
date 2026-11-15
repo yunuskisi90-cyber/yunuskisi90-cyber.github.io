@@ -13,6 +13,7 @@ export const $ = (s, r = document) => r.querySelector(s);
 
 const D = {
   tr: {
+    hello: 'Hoş geldin', tile_match_d: 'Anonim eşleş, sohbet et', tile_confess_d: 'İçinden geleni paylaş', tile_clubs_d: 'İlgi alanına göre katıl', tile_dm_d: 'Özel mesaj istekleri',
     crash_title: 'Bir şeyler ters gitti', crash_text: 'Uygulama kendini toparlıyor. Yeniden dene.',
     install_app: 'Uygulamayı yükle',
     paid_ask: 'Ücretli mesaj isteği', paid_ph: 'İlk mesajın (en çok 200 karakter)', paid_sent: 'İsteğin gönderildi', paid_inbox_on: 'Ücretli gelen kutusu', paid_inbox_note: 'Açarsan sana yalnızca ücretli istek gönderilebilir. Kabul edersen payın kredi olarak yazılır; kabul etmezsen gönderen iade alır.', paid_required: 'Bu kişiye yalnızca ücretli mesaj isteği gönderilebilir.',
@@ -47,6 +48,7 @@ const D = {
     leaderboard: 'Liderlik tablosu', badges: 'Rozetler', none_yet: 'Henüz yok',
   },
   en: {
+    hello: 'Welcome back', tile_match_d: 'Match anonymously and chat', tile_confess_d: 'Share what is on your mind', tile_clubs_d: 'Join by interest', tile_dm_d: 'Private message requests',
     crash_title: 'Something went wrong', crash_text: 'The app is recovering. Try again.',
     install_app: 'Install the app',
     paid_ask: 'Paid message request', paid_ph: 'Your first message (max 200 characters)', paid_sent: 'Request sent', paid_inbox_on: 'Paid inbox', paid_inbox_note: 'If on, people can only reach you with a paid request. If you accept, your share is credited; if you decline, the sender is refunded.', paid_required: 'This person only accepts paid message requests.',
@@ -75,6 +77,7 @@ const D = {
     r_threat: 'Threat', r_spam: 'Spam', r_illegal: 'Illegal', r_other: 'Other', reported: 'Reported, thank you.', leaderboard: 'Leaderboard', badges: 'Badges', none_yet: 'None yet',
   },
   de: {
+    hello: 'Willkommen zurück', tile_match_d: 'Anonym matchen und chatten', tile_confess_d: 'Teile, was dich beschäftigt', tile_clubs_d: 'Nach Interessen beitreten', tile_dm_d: 'Private Nachrichtenanfragen',
     crash_title: 'Etwas ist schiefgelaufen', crash_text: 'Die App erholt sich. Versuche es erneut.',
     install_app: 'App installieren',
     paid_ask: 'Bezahlte Nachrichtenanfrage', paid_ph: 'Deine erste Nachricht (max. 200 Zeichen)', paid_sent: 'Anfrage gesendet', paid_inbox_on: 'Bezahlter Posteingang', paid_inbox_note: 'Wenn aktiv, erreichen dich andere nur mit einer bezahlten Anfrage. Nimmst du an, wird dein Anteil gutgeschrieben; lehnst du ab, wird der Absender erstattet.', paid_required: 'Diese Person nimmt nur bezahlte Nachrichtenanfragen an.',
@@ -103,6 +106,7 @@ const D = {
     r_threat: 'Drohung', r_spam: 'Spam', r_illegal: 'Illegal', r_other: 'Sonstiges', reported: 'Gemeldet, danke.', leaderboard: 'Rangliste', badges: 'Abzeichen', none_yet: 'Noch keine',
   },
   es: {
+    hello: 'Bienvenido de nuevo', tile_match_d: 'Haz match y chatea de forma anónima', tile_confess_d: 'Comparte lo que sientes', tile_clubs_d: 'Únete por intereses', tile_dm_d: 'Solicitudes de mensajes privados',
     crash_title: 'Algo salió mal', crash_text: 'La app se está recuperando. Inténtalo de nuevo.',
     install_app: 'Instalar la app',
     paid_ask: 'Solicitud de mensaje de pago', paid_ph: 'Tu primer mensaje (máx. 200 caracteres)', paid_sent: 'Solicitud enviada', paid_inbox_on: 'Bandeja de pago', paid_inbox_note: 'Si está activada, solo pueden contactarte con una solicitud de pago. Si aceptas, tu parte se acredita; si rechazas, se reembolsa al remitente.', paid_required: 'Esta persona solo acepta solicitudes de mensaje de pago.',

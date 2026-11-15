@@ -110,3 +110,27 @@ nav.bottom{backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur
 input,textarea,select{font-size:16px} /* no zoom on focus (iOS) */
 a{color:var(--red)}
 @media (prefers-reduced-motion:reduce){#app>*{animation:none}.btn,.chip,button{transition:none}}
+
+/* ---- refined layout: clear hierarchy, fewer boxes, consistent spacing ---- */
+:root{--sp:16px}
+main{display:flex;flex-direction:column;gap:var(--sp)}
+h1{font-size:26px;letter-spacing:.01em;margin:0}
+.greet{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.stat-pills{display:flex;gap:8px}.pill{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:999px;background:#ffffff0a;border:1px solid #ffffff14;font:700 13px var(--font)}
+.pill svg.i{width:15px;height:15px;stroke:var(--red)}
+.hero{padding:20px;border-radius:22px;background:linear-gradient(160deg,#2a210d 0%,#0e0b05 70%);border:1px solid #6b5314;box-shadow:0 8px 30px #00000066, inset 0 1px 0 #ffffff12}
+.hero .eyebrow{font:700 11px var(--font);letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.hero-text{font-size:18px;line-height:1.4;font-weight:600;margin:0 0 16px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.big-tile{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:20px;background:linear-gradient(180deg,#15110a,#0b0905);border:1px solid #3a2e12;min-height:112px;cursor:pointer}
+.big-tile svg.i{width:26px;height:26px;stroke:var(--red);margin-bottom:6px}.big-tile b{font-size:16px}
+.list-card{border-radius:20px;background:#0d0a06;border:1px solid #2e250f;overflow:hidden}
+.lrow{display:flex;align-items:center;gap:12px;padding:15px 16px;cursor:pointer;border-bottom:1px solid #2a2210;font-weight:600}
+.lrow:last-child{border-bottom:0}.lrow svg.i{stroke:var(--red)}.lrow .chev{color:var(--muted);width:18px}
+.foot{margin-top:4px}
+.support-fab{width:46px;height:46px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:0}
+.support-fab .i{width:22px;height:22px}
+.sechead{margin-top:6px}
+.card{border-radius:20px}
+.greet{flex-direction:column;align-items:flex-start;gap:10px}
+.greet h1{font-size:23px;word-break:break-word}

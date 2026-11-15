@@ -23,7 +23,7 @@ function shell(inner, { title, nav = true, back = false, unread = 0 } = {}) {
     </header>
     ${S.cfg.banner ? html`<div class="card hot small" role="status">${S.cfg.banner}</div>` : ''}
     <main>${inner}</main>
-    ${nav ? html`<a class="support-fab" href="#/support" aria-label="${S.cfg.supportName}">${ic('chat')} ${S.cfg.supportName}</a>
+    ${nav ? html`<a class="support-fab" href="#/support" aria-label="${S.cfg.supportName}" title="${S.cfg.supportName}">${ic('help')}</a>
     <nav class="bottom" aria-label="main">${NAV.map(([h, icn, k, fab]) => html`<a href="${h}" class="${fab ? 'fab' : cur === h ? 'on' : ''}" ${raw(fab ? `aria-label="${esc(t(k))}"` : '')}>${ic(icn)}${fab ? '' : t(k)}</a>`)}</nav>` : ''}`);
   if (tg) { try { back ? tg.BackButton.show() : tg.BackButton.hide(); } catch { /* old client */ } }
 }
@@ -114,22 +114,17 @@ function pOnboard() {
 
 // ---------------- pages ----------------
 async function pHome() {
-  const [ms, n, cl, sm] = await Promise.all([api('GET', '/api/mystery/today').catch(() => ({ none: true })), api('GET', '/api/notifications').catch(() => ({ unread: 0 })), api('GET', '/api/clubs').catch(() => ({ items: [] })), api('GET', '/api/home/summary').catch(() => ({ active24h: 0, hotTopics: [] }))]);
-  const f = S.cfg.flags;
+  const [ms, n, sm] = await Promise.all([api('GET', '/api/mystery/today').catch(() => ({ none: true })), api('GET', '/api/notifications').catch(() => ({ unread: 0 })), api('GET', '/api/home/summary').catch(() => ({ active24h: 0, hotTopics: [] }))]);
+  const f = S.cfg.flags, me = S.me;
+  const tiles = [['heart', 'match', 'tile_match_d', '#/match', 'match'], ['chat', 'confess', 'tile_confess_d', '#/confess', 'confess'], ['flag', 'clubs', 'tile_clubs_d', '#/clubs', 'club'], ['lock', 'dm_title', 'tile_dm_d', '#/dm', 'private']].filter(([, , , , flag]) => f[flag]);
+  const more = [f.events ? ['trophy', 'events', '#/events'] : null, ['cube', 'quests', '#/quests'], f.rank ? ['star', 'badges', '#/rank'] : null, f.shop ? ['crown', 'shop', '#/shop'] : null, me.role ? ['shield', 'console', '#/staff'] : null].filter(Boolean);
   shell(html`
-    <div class="card hot hero-card"><div class="eyebrow">${t('mystery')}</div>${ms.none ? html`<p>${t('mystery_none')}</p>` : html`<p style="font-size:16px;font-weight:600;margin:8px 0 14px">${ms.clue}</p><button class="btn sm" data-act="nav" data-v="#/mystery">${ms.solved ? t('correct') : t('see_solution')} ${ic('chev')}</button>`}</div>
-    <div class="sechead"><h3>${t('quick')}</h3></div>
-    <div class="grid">${[['heart', 'match', '#/match', 'match'], ['chat', 'confess', '#/confess', 'confess'], ['cube', 'mystery_s', '#/mystery', 'mystery'], ['flag', 'clubs', '#/clubs', 'club']]
-      .filter(([, , , flag]) => f[flag]).map(([icn, k, h]) => html`<div class="tile" data-act="nav" data-v="${h}">${ic(icn)}${t(k)}</div>`)}</div>
-    ${f.private ? html`<div class="card row" data-act="nav" data-v="#/dm">${ic('lock')}<span class="grow"><b>${t('dm_title')}</b><div class="muted small">${t('dm_sub')}</div></span>${ic('chev')}</div>` : ''}
-    <div class="card row" data-act="nav" data-v="#/quests">${ic('cube')}<span class="grow"><b>${t('quests')}</b><div class="muted small">${t('quests_sub')}</div></span>${ic('chev')}</div>
-    <div class="sechead"><h3>${t('active_users')}</h3></div><div class="card row">${ic('user')}<b>${sm.active24h}</b><span class="muted">${t('active_24h')}</span></div>
-    ${f.club ? html`<div class="sechead"><h3>${t('active_clubs')}</h3><a href="#/clubs">${t('see_all')} ›</a></div>
-      ${cl.items.length ? html`<div class="card list">${cl.items.slice(0, 3).map((c) => html`<div class="item row" data-act="nav" data-v="#/club/${c.id}"><span class="grow"><b>${c.name}</b><div class="muted small">${c.members} ${t('members')}</div></span>${ic('chev')}</div>`)}</div>` : html`<p class="muted small">${t('empty')}</p>`}` : ''}
-    ${sm.hotTopics.length ? html`<div class="sechead"><h3>${t('hot_topics')}</h3></div><div class="chips">${sm.hotTopics.map((x) => html`<button class="chip" data-act="nav" data-v="#/confess">#${t('cc_' + x.category)} · ${x.n}</button>`)}</div>` : ''}
-    <div class="row wrap gap" style="margin-top:6px">${f.events ? html`<button class="chip" data-act="nav" data-v="#/events">${ic('trophy')} ${t('events')}</button>` : ''}${f.rank ? html`<button class="chip" data-act="nav" data-v="#/rank">${ic('star')} ${t('badges')}</button>` : ''}${f.shop ? html`<button class="chip" data-act="nav" data-v="#/shop">${ic('crown')} ${t('shop')}</button>` : ''}</div>
-    ${S.me.role ? html`<div class="card row" data-act="nav" data-v="#/staff">${ic('shield')}<b class="grow">${t('console')}</b><span class="badge">${S.me.role}</span></div>` : ''}
-    <div class="card muted small"><b>${t('soon')}:</b> REVEAL · AI · PRIVATE — ${t('soon_note')} ${t('age_note')}</div>`, { unread: n.unread });
+    <section class="greet"><div><div class="muted small">${t('hello')}</div><h1>${me.alias}</h1></div><div class="stat-pills"><span class="pill">${ic('flame')} ${me.streak || 0}</span><span class="pill">${ic('star')} ${me.points || 0}</span></div></section>
+    <section class="hero"><div class="eyebrow">${t('mystery')}</div>${ms.none ? html`<p class="hero-text">${t('mystery_none')}</p>` : html`<p class="hero-text">${ms.clue}</p><button class="btn" data-act="nav" data-v="#/mystery">${ms.solved ? t('correct') : t('see_solution')} ${ic('chev')}</button>`}</section>
+    <section class="tiles">${tiles.map(([icn, k, d, h]) => html`<div class="big-tile" data-act="nav" data-v="${h}">${ic(icn)}<b>${t(k)}</b><span class="muted small">${t(d)}</span></div>`)}</section>
+    ${sm.hotTopics.length ? html`<div class="chips">${sm.hotTopics.map((x) => html`<button class="chip" data-act="nav" data-v="#/confess">#${t('cc_' + x.category)} · ${x.n}</button>`)}</div>` : ''}
+    <section class="list-card">${more.map(([icn, k, h]) => html`<div class="lrow" data-act="nav" data-v="${h}">${ic(icn)}<span class="grow">${t(k)}</span>${ic('chev', 'chev')}</div>`)}</section>
+    <p class="muted small center foot">${sm.active24h} ${t('active_24h')}</p>`, { unread: n.unread });
 }
 
 async function pDiscover() {
