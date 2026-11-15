@@ -13,6 +13,7 @@ export const $ = (s, r = document) => r.querySelector(s);
 
 const D = {
   tr: {
+    session_stale: 'Oturum süresi doldu. Uygulamayı kapatıp Telegram’dan yeniden aç.', reopen: 'Yeniden aç',
     hello: 'Hoş geldin', tile_match_d: 'Anonim eşleş, sohbet et', tile_confess_d: 'İçinden geleni paylaş', tile_clubs_d: 'İlgi alanına göre katıl', tile_dm_d: 'Özel mesaj istekleri',
     crash_title: 'Bir şeyler ters gitti', crash_text: 'Uygulama kendini toparlıyor. Yeniden dene.',
     install_app: 'Uygulamayı yükle',
@@ -48,6 +49,7 @@ const D = {
     leaderboard: 'Liderlik tablosu', badges: 'Rozetler', none_yet: 'Henüz yok',
   },
   en: {
+    session_stale: 'Your session expired. Close the app and open it again from Telegram.', reopen: 'Reopen',
     hello: 'Welcome back', tile_match_d: 'Match anonymously and chat', tile_confess_d: 'Share what is on your mind', tile_clubs_d: 'Join by interest', tile_dm_d: 'Private message requests',
     crash_title: 'Something went wrong', crash_text: 'The app is recovering. Try again.',
     install_app: 'Install the app',
@@ -77,6 +79,7 @@ const D = {
     r_threat: 'Threat', r_spam: 'Spam', r_illegal: 'Illegal', r_other: 'Other', reported: 'Reported, thank you.', leaderboard: 'Leaderboard', badges: 'Badges', none_yet: 'None yet',
   },
   de: {
+    session_stale: 'Deine Sitzung ist abgelaufen. Schließe die App und öffne sie erneut über Telegram.', reopen: 'Neu öffnen',
     hello: 'Willkommen zurück', tile_match_d: 'Anonym matchen und chatten', tile_confess_d: 'Teile, was dich beschäftigt', tile_clubs_d: 'Nach Interessen beitreten', tile_dm_d: 'Private Nachrichtenanfragen',
     crash_title: 'Etwas ist schiefgelaufen', crash_text: 'Die App erholt sich. Versuche es erneut.',
     install_app: 'App installieren',
@@ -106,6 +109,7 @@ const D = {
     r_threat: 'Drohung', r_spam: 'Spam', r_illegal: 'Illegal', r_other: 'Sonstiges', reported: 'Gemeldet, danke.', leaderboard: 'Rangliste', badges: 'Abzeichen', none_yet: 'Noch keine',
   },
   es: {
+    session_stale: 'Tu sesión caducó. Cierra la app y ábrela de nuevo desde Telegram.', reopen: 'Reabrir',
     hello: 'Bienvenido de nuevo', tile_match_d: 'Haz match y chatea de forma anónima', tile_confess_d: 'Comparte lo que sientes', tile_clubs_d: 'Únete por intereses', tile_dm_d: 'Solicitudes de mensajes privados',
     crash_title: 'Algo salió mal', crash_text: 'La app se está recuperando. Inténtalo de nuevo.',
     install_app: 'Instalar la app',

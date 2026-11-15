@@ -76,7 +76,7 @@ function webLoginScreen(msg) {
   clearInterval(webPoll);
   draw(html`${splash()}<p class="center tagline">${t('login_lead')}</p><div class="card center">${msg ? html`<p class="muted small" role="alert">${msg}</p>` : ''}<button class="btn ghost" data-act="installapp" ${installEvt ? '' : raw('hidden')}>${ic('download')} ${t('install_app')}</button><br><button class="btn" data-act="webstart">${ic('chat')} ${t('web_login_btn')}</button><p class="muted small">${t('web_login_hint')}</p><p class="muted small">${t('open_in_tg')} ${t('open_in_tg2')}</p><p class="muted small">${t('login_note')}</p></div>`);
 }
-function fatal(e) { draw(html`<div class="card center"><b>${errMsg(e.code)}</b><p class="muted small">${e.code}</p><button class="btn" data-act="reload">${t('retry')}</button></div>`); }
+function fatal(e) { const stale = ['init_data_expired', 'init_data_replayed', 'init_data_invalid'].includes(e.code); draw(html`<div class="card center"><b>${stale ? t('session_stale') : errMsg(e.code)}</b><p class="muted small">${e.code}</p>${stale && tg ? html`<button class="btn" data-act="tgclose">${t('reopen')}</button>` : html`<button class="btn" data-act="reload">${t('retry')}</button>`}</div>`); }
 function devLogin() {
   draw(html`${splash()}<p class="center tagline">${t('tagline1a')} <em>${t('tagline1b')}</em></p>
     <div class="card"><h3>${t('dev_login')}</h3><label for="devid">Telegram ID (test)</label><input id="devid" inputmode="numeric" value="900001"><br><br><button class="btn" data-act="devlogin">${t('start')}</button></div>`);
@@ -308,6 +308,7 @@ async function attachment(inputId) { const f = $(`#${inputId}`)?.files?.[0]; if 
 const ACT = {
   reload: () => location.reload(), back: () => (history.length > 1 ? history.back() : go('#/home')), nav: (a) => go(a.dataset.v), bell: () => go('#/notifications'),
   async installapp() { if (installEvt) { installEvt.prompt(); installEvt = null; } },
+  tgclose() { try { tg.close(); } catch { location.reload(); } },
   async webstart() {
     try {
       const s = await api('POST', '/api/auth/web/start', null, { noAuth: true });
